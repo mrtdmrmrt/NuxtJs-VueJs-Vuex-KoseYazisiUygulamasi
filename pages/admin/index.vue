@@ -15,6 +15,9 @@
 import PostList from "@/components/post/postList"
 
 export default {
+    head : {
+        title : 'Admin | Köşe Yazısı'
+    },
     layout : "admin",
     components : {
         PostList

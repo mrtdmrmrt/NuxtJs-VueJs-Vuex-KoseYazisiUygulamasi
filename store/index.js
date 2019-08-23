@@ -23,7 +23,8 @@ const createStore = ()=>{
         },
         actions : {
             addPost(vuexContext,post){
-                return axios.post("https://kose-yaziliri-nuxtjs.firebaseio.com/posts.json",post)
+                //return axios.post("https://kose-yaziliri-nuxtjs.firebaseio.com/posts.json",post)
+                return this.$axios.post(process.env.baseURL + "posts.json" ,post) //nuxt.config.js e env ekleyince bu şekilde kullanabiliriz
                 .then(res=>{
                     //vuexContext.commit("addPost",{id:res.data.name, ...post}) bu durumda id ezilir ve null gelir onun için ...postu başa aldık
                     vuexContext.commit("addPost",{...post, id:res.data.name})
@@ -32,15 +33,19 @@ const createStore = ()=>{
                 })
             },
             updatePost(vuexContext,editedPost){
-                return axios.put("https://kose-yaziliri-nuxtjs.firebaseio.com/posts/" + editedPost.id +".json",editedPost)
+                //return axios.put("https://kose-yaziliri-nuxtjs.firebaseio.com/posts/" + editedPost.id +".json",editedPost)
+                return this.$axios.put(process.env.baseURL +"posts/" + editedPost.id +".json",editedPost)
                 .then(res=>{
                 vuexContext.commit("updatePost",editedPost)
             })
             .catch(e=>console.log(e))
             },
+           
             //fetch() , ayncData altarnatir nuxtServerInit
             nuxtServerInit(vuexContext,context){
-                return axios.get("https://kose-yaziliri-nuxtjs.firebaseio.com/posts.json")
+                //return axios.get("https://kose-yaziliri-nuxtjs.firebaseio.com/posts.json")
+                //return axios.get(process.env.baseURL +"posts.json")
+                return context.app.$axios.get(process.env.baseURL +"posts.json")
                 .then (res => {
                     //console.log(res)
                     let postArray = []
