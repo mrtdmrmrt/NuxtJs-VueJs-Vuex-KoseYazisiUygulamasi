@@ -14,7 +14,12 @@ export default {
         PostList
         
     },
-    
+    computed : {
+        fetchedPosts(){
+            return this.$store.getters.getPosts
+        }
+    }
+    /*
     
     asyncData(context, callback){
         //callback(hatalarla uğraşmak istiyorsak , ikici geri döndürelecek object)
@@ -43,6 +48,7 @@ export default {
         
         
     }
+    */
   
 }
 </script>

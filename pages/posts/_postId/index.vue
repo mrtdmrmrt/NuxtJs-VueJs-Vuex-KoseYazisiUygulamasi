@@ -6,14 +6,23 @@
 
 <script>
 import PostDetail from "@/components/post/PostDetail"
-
+import axios from "axios"
 export default {
     components : {
         PostDetail
         
     },
-    //this.$route.params._postId  --> context bunu bize verir
+    asyncData(context){
+        return axios.get("https://kose-yaziliri-nuxtjs.firebaseio.com/posts/" + context.params.postId +".json")
+        .then(res=>{
+            return {
+                fetchedPost : res.data
+            }
+        })
+    }
 
+    //this.$route.params._postId  --> context bunu bize verir
+/*
     asyncData (context,callback){
         setTimeout(()=>{
             //callback(null,{}) null burda hata oluşturmamak için yazıldı
@@ -30,6 +39,7 @@ export default {
             })
         },500)
     }
+    */
   
 }
 </script>

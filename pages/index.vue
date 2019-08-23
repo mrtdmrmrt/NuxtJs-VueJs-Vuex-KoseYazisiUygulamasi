@@ -32,7 +32,7 @@ export default {
     },
     
     //verileri server tarafında yapmamızı sağlar nuxtjs e aittir.
-    //asyncData sayesinde sayfa rander edidi.
+    //asyncData sayesinde sayfa rander edildi.
     //asyncData içinde this kullanılmaz
 
     //promise yaklaşımında callback yazılmaz yoksa sayfa sonsuz döngüye girer

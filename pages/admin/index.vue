@@ -3,7 +3,9 @@
     <div class="container d-flex justify-content-center align-items-center">
         <button @click="$router.push('/admin/new-post')" class="btn btn-dark">Yeni Bir Yazı Ekle</button>
     </div>
-    <PostList :is-admin="true"/>
+    <PostList 
+    :posts="fetchedPosts"
+    :is-admin="true"/>
     
 </div>
 
@@ -17,6 +19,12 @@ export default {
     components : {
         PostList
         
+    },
+    //verileri vuex de tuttuğumuz için computed oluşturduk
+    computed : {
+        fetchedPosts(){
+            return this.$store.getters.getPosts
+        }
     }
   
 }
